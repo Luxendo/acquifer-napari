@@ -173,15 +173,21 @@ def reader_function(path):
     """
     array6D = array_from_directory(path)
     
-    listData = []
     DEFAULT_CHANNEL_COLORS = ["cyan", "green","yellow", "red", "magenta", "gray"] # ordered from CO1 to CO6
-
+    
+    listNames     = [] # as shown in left channel-panel in napari, default Cx with x in [1,6]
+    listColormaps = [] # color map/LUT for the channels
+    listOpacities = [] # default opacities (1 for BF, 0.5 for Fluo to hava good blend)
+    
     for channel in array6D["Channel"].values:
-        channelArray = array6D.sel(Channel=channel)
-        metadata = {"name"     : "C" + str(channel),
-                    "colormap" : DEFAULT_CHANNEL_COLORS[channel-1],
-                    "opacity"  : 1 if channel==6 else 0.5
-                    }
-        listData.append( (channelArray, metadata) )
-        
-    return listData
+        listNames.append( "C" + str(channel) )
+        listColormaps.append( DEFAULT_CHANNEL_COLORS[channel-1] ) # channel-1 since IM-channels are 1-based while positional-indexes are 0-base
+        listOpacities.append( 1 if channel==6 else 0.5)
+    
+    metadata = {"channel_axis" : 0,
+                "name"     : listNames,
+                "colormap" : listColormaps,
+                "opacity"  : listOpacities
+                }
+    
+    return [ (array6D, metadata ) ]
