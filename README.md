@@ -8,8 +8,6 @@
 
 Visualize IM datasets as a multi-dimensional image, using lazy data-loading thanks to Dask. 
 
-----------------------------------
-
 This [napari] plugin was generated with [Cookiecutter] using with [@napari]'s [cookiecutter-napari-plugin] template.
 
 <!--
@@ -21,20 +19,24 @@ https://napari.org/docs/plugins/index.html
 -->
 
 ## Installation
+The plugin can be installed from source by downloading this repo, opening a conda prompt in the repo directory and calling:  
+`pip install .` or `pip install --user .` if user permission is an issue.  
 
-You can install `acquifer-viewer` via [pip]:
+Obviously the plugin should be installed in an environment with napari already.  
+Once installed, napari can be opened in a IPython interactive session with
 
-    pip install acquifer-viewer
+```python
+>> import napari
+>> napari.Viewer()
+```
+Then one can activate the acquifer-viewer plugin via the menu `Plugins > Install/Uninstall packages`.  
+Also clicking the *Show Sorter* button will display the list of hooks available.  
+Selecting `get_reader`in the list of hooks should list the acquifer-viewer hook (preferentially in 1st position).  
+From there on, anytime `File > Open Folder` is used in napari, it will use the acquifer-viewer to load it.  
 
-## Contributing
+The acquifer-viewr loads IM04 datasets, and display each channel as a separate "layer" in napari.  
+Sliders for well, channel, time and Z are automatically rendered when there are more than 1 coordinates along the dimension.  
 
-Contributions are very welcome. Tests can be run with [tox], please ensure
-the coverage at least stays the same before you submit a pull request.
-
-## License
-
-Distributed under the terms of the [GNU GPL v3.0] license,
-"acquifer-viewer" is free and open source software
 
 ## Issues
 
