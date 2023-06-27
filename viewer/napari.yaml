@@ -1,0 +1,12 @@
+name: acquifer-napari-plugin
+schema_version: 0.2.0
+contributions:
+  commands:
+  - id: acquifer-napari-plugin.get_reader
+    title: Get Reader
+    python_name: viewer._reader:napari_get_reader
+  readers:
+  - command: acquifer-napari-plugin.get_reader
+    filename_patterns:
+    - '*'
+    accepts_directories: true
