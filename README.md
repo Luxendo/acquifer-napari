@@ -1,4 +1,4 @@
-# acquifer-viewer
+# acquifer-napari
 
 [![License](https://img.shields.io/pypi/l/acquifer-viewer.svg?color=green)](https://github.com/LauLauThom/acquifer-viewer/raw/master/LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/acquifer-viewer.svg?color=green)](https://pypi.org/project/acquifer-viewer)
@@ -13,28 +13,39 @@ This [napari] plugin was generated with [Cookiecutter] using with [@napari]'s [c
 <!--
 Don't miss the full getting started guide to set up your new package:
 https://github.com/napari/cookiecutter-napari-plugin#getting-started
-
-and review the napari docs for plugin developers:
-https://napari.org/docs/plugins/index.html
 -->
+
+## Configurations
+The file `napari.yaml` in `acquifer_napari_plugin` defines what functions of the python package are visible to napari.  
+The top level `name` field must be the same than the python package name defined in `setup.cfg`.
+It first define a set of commands, which have a custom `id`, and a `python_name`, which is the actual location of the function in the python package (or module).  
+Then the napari.yaml has optional subsections `readers`, `writers`, `widget`, to reference some of the commands previously defined, to notify napari that they implemente those standard functions.  
+For instance I first define a command myReader pointing to myPackage.myReader, and I reference that command using the id it in the section readers  
+See https://napari.org/stable/plugins/first_plugin.html#add-a-napari-yaml-manifest  
 
 ## Installation
 The plugin can be installed from source by downloading this repo, opening a conda prompt in the repo directory and calling:  
 `pip install .` or `pip install --user .` if user permission is an issue.  
 
-Obviously the plugin should be installed in an environment with napari already.  
+Use `pip install -e .` to install in developement mode, so any change in the source code is directly reflected.  
+Use `npe2 list` to check that the plugin is correctly installed and visible by napari.  
+For instance here, the package defines 1 command, which is a reader.  
+One could have more commands, which would be implement other types.   
+This should output something like following 
+┌──────────────────────────────┬─────────┬──────┬───────────────────────────────────────────────────────────┐
+│ Name                         │ Version │ Npe2 │ Contributions                                             │
+├──────────────────────────────┼─────────┼──────┼───────────────────────────────────────────────────────────┤
+│ acquifer-napari              │ 0.0.1   │ ✅   │ commands (1), readers (1)
+
+The plugin should be installed in an environment with napari installed.  
+Napari can be started with the `napari`command in a command prompt with a system wide python installation.  
 Once installed, napari can be opened in a IPython interactive session with
 
 ```python
 >> import napari
 >> napari.Viewer()
 ```
-Then one can activate the acquifer-viewer plugin via the menu `Plugins > Install/Uninstall packages`.  
-Also clicking the *Show Sorter* button will display the list of hooks available.  
-Selecting `get_reader`in the list of hooks should list the acquifer-viewer hook (preferentially in 1st position).  
-From there on, anytime `File > Open Folder` is used in napari, it will use the acquifer-viewer to load it.  
-
-The acquifer-viewr loads IM04 datasets, and display each channel as a separate "layer" in napari.  
+The acquifer-napari plugin loads IM04 datasets, and display each channel as a separate "layer" in napari.  
 Sliders for well, channel, time and Z are automatically rendered when there are more than 1 coordinates along the dimension.  
 
 

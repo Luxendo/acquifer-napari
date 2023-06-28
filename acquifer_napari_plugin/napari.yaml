@@ -1,11 +1,11 @@
-name: acquifer-napari-plugin
+name: acquifer-napari
 contributions:
   commands:
-  - id: acquifer-napari-plugin.get_reader
+  - id: acquifer-napari.get_reader
     title: Get Reader
     python_name: acquifer_napari_plugin._reader:napari_get_reader
   readers:
-  - command: acquifer-napari-plugin.get_reader
+  - command: acquifer-napari.get_reader
     filename_patterns:
     - '*'
     accepts_directories: true
