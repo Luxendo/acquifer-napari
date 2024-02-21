@@ -9,7 +9,7 @@ see: https://napari.org/docs/dev/plugins/hook_specifications.html
 Replace code below accordingly.  For complete documentation see:
 https://napari.org/docs/dev/plugins/for_plugin_developers.html
 """
-from acquifer.utils import array_from_directory
+from . import utils
 import os
 
 def napari_get_reader(path):
@@ -57,7 +57,7 @@ def reader_function(path):
         Both "meta", and "layer_type" are optional. napari will default to
         layer_type=="image" if not provided
     """
-    array6D = array_from_directory(path)
+    array6D = utils.array_from_directory(path)
     
     DEFAULT_CHANNEL_COLORS = ["cyan", "green","yellow", "red", "magenta", "gray"] # ordered from CO1 to CO6
     
