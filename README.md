@@ -37,4 +37,4 @@ See https://napari.org/stable/plugins/first_plugin.html#add-a-napari-yaml-manife
 
 
 ## Issues
-If you encounter any problems, please [file an issue](https://github.com/LauLauThom/acquifer-napari/issues) along with a detailed description.
+If you encounter any problems, please [file an issue](https://github.com/Luxendo/acquifer-napari/issues) along with a detailed description.
